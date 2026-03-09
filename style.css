@@ -1,0 +1,283 @@
+/* ================================================================
+   ENGLISHQUIZ — Custom Styles
+   (Supplements TailwindCSS utility classes)
+================================================================ */
+
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body { -webkit-font-smoothing: antialiased; }
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: #c7d2fe; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+
+
+/* ── Upload Drop-Zone ────────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed #c7d2fe;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  transform: scale(1.005);
+}
+.upload-zone.has-file {
+  border-style: solid;
+  border-color: #4f46e5;
+  background: #eef2ff;
+}
+
+
+/* ── Answer Option Blocks ────────────────────────────────────── */
+.option-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 58px;
+}
+.option-block:hover {
+  border-color: #818cf8;
+  background: #f5f3ff;
+  transform: translateX(3px);
+}
+.option-block.selected {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+.option-block input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.option-letter {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  background: #f3f4f6;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+}
+.option-block.selected .option-letter {
+  background: #4f46e5;
+  color: #fff;
+}
+.option-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1f2937;
+}
+.option-block.selected .option-text {
+  color: #1e1b4b;
+  font-weight: 500;
+}
+
+/* Result states */
+.option-block.correct {
+  border-color: #059669;
+  background: #ecfdf5;
+}
+.option-block.correct .option-letter {
+  background: #059669;
+  color: #fff;
+}
+.option-block.wrong {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+.option-block.wrong .option-letter {
+  background: #dc2626;
+  color: #fff;
+}
+.option-block.missed {
+  border-color: #059669;
+  background: #f0fdf4;
+  border-style: dashed;
+}
+.option-block.missed .option-letter {
+  background: #059669;
+  color: #fff;
+}
+
+
+/* ── Timer ───────────────────────────────────────────────────── */
+.timer-display {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  transition: color 0.3s;
+}
+.timer-danger {
+  color: #ef4444 !important;
+  animation: timerPulse 0.8s ease-in-out infinite;
+}
+@keyframes timerPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #6366f1, #818cf8);
+  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+
+/* ── Question Card ───────────────────────────────────────────── */
+.question-card {
+  opacity: 0;
+  animation: slideUp 0.35s ease forwards;
+}
+
+
+/* ── Score Ring (Result Screen) ─────────────────────────────── */
+.score-ring {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+.score-ring svg {
+  transform: rotate(-90deg);
+}
+.score-ring-bg   { fill: none; stroke: #e0e7ff; stroke-width: 10; }
+.score-ring-fill {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);
+}
+.score-ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+
+/* ── Sticky Exam Header ──────────────────────────────────────── */
+.exam-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(30, 27, 75, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 14px 32px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.15s;
+  box-shadow: 0 4px 18px rgba(79,70,229,0.35);
+}
+.btn-primary:hover  { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(79,70,229,0.45); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 14px 32px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.15s;
+  box-shadow: 0 4px 18px rgba(220,38,38,0.3);
+}
+.btn-danger:hover  { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(220,38,38,0.4); }
+.btn-danger:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 2px solid #c7d2fe;
+  color: #4f46e5;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-ghost:hover { background: #eef2ff; border-color: #4f46e5; }
+
+
+/* ── Toast notification ──────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e1b4b;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 9999;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+  white-space: nowrap;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ── Responsive tweaks ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .option-block { min-height: 52px; padding: 12px 14px; }
+  .option-letter { width: 30px; height: 30px; font-size: 13px; }
+}
